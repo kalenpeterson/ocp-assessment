@@ -1,0 +1,23 @@
+apiVersion: config.openshift.io/v1
+kind: OAuth
+spec:
+  identityProviders:
+    - ldap:
+        attributes:
+          email:
+            - mail
+          id:
+            - sAMAccountName
+          name:
+            - cn
+          preferredUsername:
+            - sAMAccountName
+        bindDN: 'CN=Kalen Peterson,OU=Sirius,OU=OCPEval,DC=ocpeval,DC=scstec,DC=net'
+        bindPassword:
+          name: ldap-bind-password-7rjsh
+        insecure: true
+        url: >-
+          ldap://10.250.110.10:389/DC=ocpeval,DC=scstec,DC=net?sAMAccountName?sub
+      mappingMethod: claim
+      name: Active Directory
+      type: LDAP

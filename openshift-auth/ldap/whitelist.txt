@@ -1,0 +1,2 @@
+CN=ocp-cluster-admins,OU=Groups,OU=OCPEval,DC=ocpeval,DC=scstec,DC=net
+CN=ocp-cluster-users,OU=Groups,OU=OCPEval,DC=ocpeval,DC=scstec,DC=net

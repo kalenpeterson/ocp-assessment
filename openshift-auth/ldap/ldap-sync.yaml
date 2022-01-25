@@ -1,0 +1,23 @@
+kind: LDAPSyncConfig
+apiVersion: v1
+url: ldap://10.250.110.10:389
+bindDN: 'CN=Kalen Peterson,OU=Sirius,OU=OCPEval,DC=ocpeval,DC=scstec,DC=net'
+bindPassword: '*****'
+insecure: true
+groupUIDNameMapping:
+  "CN=ocp-cluster-admins,OU=Groups,OU=OCPEval,DC=ocpeval,DC=scstec,DC=net": OCP-Cluster-Admins
+  "CN=ocp-cluster-users,OU=Groups,OU=OCPEval,DC=ocpeval,DC=scstec,DC=net": OCP-Cluster-Users
+augmentedActiveDirectory:
+    groupsQuery:
+        derefAliases: never
+        pageSize: 0
+    groupUIDAttribute: dn
+    groupNameAttributes: [ cn ]
+    usersQuery:
+        baseDN: "DC=ocpeval,DC=scstec,DC=net"
+        scope: sub
+        derefAliases: never
+        filter: (objectclass=person)
+        pageSize: 0
+    userNameAttributes: [ sAMAccountName ]
+    groupMembershipAttributes: [ "memberOf:1.2.840.113556.1.4.1941:" ]
