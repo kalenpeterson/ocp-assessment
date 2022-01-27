@@ -1,0 +1,26 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: fake-job
+spec:
+  template:
+    metadata:
+      name: fake-job
+    spec:
+      restartPolicy: Never
+      containers:
+      - image: nginx
+        resources:
+          limits:
+            memory: "4200Mi"
+            cpu: "8000m"
+          requests:
+            memory: "4200Mi"
+            cpu: "1000m"
+            ephemeral-storage: "1Gi"
+        command: ["/bin/sh","-c"]
+        args: 
+          - echo "Running Job...";
+            sleep infinity;
+        name: fake-job

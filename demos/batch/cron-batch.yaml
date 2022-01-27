@@ -1,0 +1,34 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: fake-cronjob
+spec:
+  schedule: "@daily"
+  concurrencyPolicy: Allow
+  failedJobsHistoryLimit: 3
+  startingDeadlineSeconds: 300
+  successfulJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          activeDeadlineSeconds: 3600
+          backoffLimit: 3
+          parallelism: 1
+          restartPolicy: OnFailure
+          containers:
+          - image: nginx
+            resources:
+              limits:
+                memory: "4200Mi"
+                cpu: "8000m"
+              requests:
+                memory: "4200Mi"
+                cpu: "1000m"
+                ephemeral-storage: "1Gi"
+            command: ["/bin/sh","-c"]
+            args: 
+              - echo "Running Job...";
+                sleep infinity;
+            name: fake-job
