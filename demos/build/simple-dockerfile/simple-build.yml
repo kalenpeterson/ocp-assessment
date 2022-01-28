@@ -1,0 +1,20 @@
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: mywebsite
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com/monodot/container-up   # clone this code
+    contextDir: httpd-hello-world                    # cd to this directory
+    dockerfile: |
+      FROM bitnami/apache:latest
+      COPY ./public_html/ /app
+  strategy:
+    type: Docker
+  output:
+    to:
+      kind: DockerImage
+      name: 'docker.io/kalenpeterson/apache-hello:latest'
