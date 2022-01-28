@@ -1,0 +1,20 @@
+FROM ubuntu:20.04
+
+WORKDIR /benchmarks
+
+RUN apt-get update && apt-get install -y \
+    unzip \
+    curl \
+    wget \
+    libncurses5 \
+    sudo \
+    dmidecode
+
+RUN wget https://www.passmark.com/downloads/pt_linux_x64.zip
+
+RUN unzip -j pt_linux_x64.zip && \
+    rm -f pt_linux_x64.zip
+
+COPY run.sh run.sh
+
+RUN chmod +x run.sh
