@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: user-workload-monitoring-config
+  namespace: openshift-user-workload-monitoring
+data:
+  config.yaml: |
+    prometheus:
+      remoteWrite:
+      - url: "https://remote-write.endpoint"
+        basicAuth:
+          username:
+            name: remoteWriteAuth
+            key: user
+          password:
+            name: remoteWriteAuth
+            key: password
+      retention: 24h 
+      resources:
+        requests:
+          cpu: 200m 
+          memory: 2Gi
+      nodeSelector:
+        node-role.kubernetes.io/infra: ""
+      tolerations:
+      - key: infra
+        value: reserved
+        effect: NoSchedule
+      - key: infra
+        value: reserved
+        effect: NoExecute

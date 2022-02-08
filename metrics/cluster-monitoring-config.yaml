@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cluster-monitoring-config
+  namespace: openshift-monitoring
+data:
+  config.yaml: |
+    prometheusK8s:
+      remoteWrite:
+      - url: "https://remote-write.endpoint"
+        basicAuth:
+          username:
+            name: remoteWriteAuth
+            key: user
+          password:
+            name: remoteWriteAuth
+            key: password
+      volumeClaimTemplate:
+       spec:
+         storageClassName: fast
+         volumeMode: Filesystem
+         resources:
+           requests:
+             storage: 40Gi
