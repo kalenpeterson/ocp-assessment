@@ -25,3 +25,7 @@ mount -o remount,rw /sysroot
 xfs_growfs /sysroot
 ```
 
+### 3. Check Filesystm
+```
+lsblk
+```
