@@ -16,6 +16,7 @@ Extend the disk allocated to each Worker node to desired size.
 ### 2. Grow filesystem
 Run this on a node shell for each extended worker
 ```
+echo 1 >/sys/block/sda/device/rescan
 sudo su
 growpart /dev/sda 4
 sudo su -
