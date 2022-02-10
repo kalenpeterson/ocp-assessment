@@ -1,0 +1,23 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: jenkins-agent-build
+  namespace: jenkins
+spec:
+  output:
+    to:
+      kind: DockerImage
+      name: 'docker.io/kalenpeterson/jenkins-agent:latest'
+  resources: {}
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: demos/build/jenkins-agents/Dockerfile-x86
+  postCommit: {}
+  source:
+    type: Git
+    git:
+      uri: 'hhttps://github.com/kalenpeterson/ocp-assessment.git'
+    contextDir: /
