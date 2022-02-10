@@ -7,6 +7,6 @@ RUN curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | b
 
 # Install OC From local OCP
 RUN wget --no-check-certificate https://downloads-openshift-console.apps.ocp.pod1.nucpod.xyz/amd64/linux/oc.tar && \
-    tar -xf ./oc.tar /usr/local/bin && \\
+    tar -xf ./oc.tar -C /usr/local/bin && \\
     chmod +x /usr/local/bin/oc && \\
     rm ./oc.tar
