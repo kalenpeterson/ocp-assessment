@@ -12,4 +12,4 @@ RUN wget --no-check-certificate https://downloads-openshift-console.apps.ocp.pod
     rm ./oc.tar
 
 # Install buildah
-RUN yum install buildah
+RUN yum install buildah -y
