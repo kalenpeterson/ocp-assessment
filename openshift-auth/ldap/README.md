@@ -1,6 +1,6 @@
 
 ## 1. Configure LDAP IDP
-  * https://urldefense.com/v3/__https://docs.openshift.com/container-platform/4.9/authentication/identity_providers/configuring-ldap-identity-provider.html
+  * https://docs.openshift.com/container-platform/4.9/authentication/identity_providers/configuring-ldap-identity-provider.html
 
 ### 1.1 Create ldap-secret
 ```
@@ -45,7 +45,7 @@ oc new-project ldap-sync
 ### 2.1 Edit and Create the LDAP Sync secret
 
 NOTE: If you need nested groups. See here for the configuration
-  * https://urldefense.com/v3/__https://docs.openshift.com/container-platform/4.9/authentication/ldap-syncing.html
+  * https://docs.openshift.com/container-platform/4.9/authentication/ldap-syncing.html
   
   * Duplicate this from the LDAP IDP configuration
   * Omit the CA if it was configured cluster-wide
