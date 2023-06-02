@@ -9,9 +9,27 @@ Create Secret
 oc create secret generic htpass-secret --from-file=htpasswd=./htpasswd -n openshift-config 
 ```
 
-Create CR
+Edit the OAuth Config
 ```
-oc apply -f </path/to/CR>
+oc edit oauth cluster
+```
+
+Add the HTPasswd auth option
+**NOTE**: Ensure that you don't remove other authentication options, Like LDAP
+```
+---
+apiVersion: config.openshift.io/v1
+kind: OAuth
+metadata:
+  name: cluster
+spec:
+  identityProviders:
+  - name: htpasswd_provider 
+    mappingMethod: claim
+    type: HTPasswd
+    htpasswd:
+      fileData:
+        name: htpass-secret
 ```
 
 Test Login
